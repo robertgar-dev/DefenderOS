@@ -1,0 +1,15 @@
+# Auto-labels PRs by which domain they touch, so the manual-gate split from
+# docs/decisions/0002-routine-eligibility.md is visible on the PR itself —
+# not just something a reviewer has to remember.
+
+needs-human-check:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "DefenderOS/CarPlay/**"
+          - "DefenderOS/Widgets/**"
+
+routine-safe:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "DefenderOS/Core/Awareness/**"
+          - "DefenderOS/Data/DossierSync/**"

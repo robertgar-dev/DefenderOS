@@ -1,0 +1,63 @@
+# XcodeGen project spec. Install: `brew install xcodegen`. Run: `xcodegen generate`.
+# Regenerate the .xcodeproj from this file instead of editing it by hand —
+# this file is the diffable, Claude-Code-editable source of truth.
+#
+# Fill in your own Apple Developer Team ID below before the first build;
+# it is intentionally left blank here.
+
+name: DefenderOS
+options:
+  bundleIdPrefix: com.garfinkle
+  deploymentTarget:
+    iOS: "17.0"
+
+targets:
+  DefenderOS:
+    type: application
+    platform: iOS
+    sources:
+      - path: DefenderOS
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.garfinkle.defenderos
+        INFOPLIST_FILE: DefenderOS/Resources/Info.plist
+        CODE_SIGN_ENTITLEMENTS: DefenderOS/Resources/DefenderOS.entitlements
+        DEVELOPMENT_TEAM: "" # fill in your Team ID
+    entitlements:
+      path: DefenderOS/Resources/DefenderOS.entitlements
+      properties:
+        com.apple.developer.carplay-maps: true
+    dependencies:
+      - target: DefenderOSWidgetExtension
+        embed: true
+
+  DefenderOSWidgetExtension:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Widgets/DefenderOSWidget
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.garfinkle.defenderos.widget
+        INFOPLIST_FILE: Widgets/DefenderOSWidget/Info.plist
+        DEVELOPMENT_TEAM: "" # fill in your Team ID
+
+  DefenderOSTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: DefenderOSTests
+    dependencies:
+      - target: DefenderOS
+
+schemes:
+  DefenderOS:
+    build:
+      targets:
+        DefenderOS: all
+        DefenderOSWidgetExtension: all
+    test:
+      targets:
+        - DefenderOSTests
+    run:
+      config: Debug

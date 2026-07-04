@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate project
+        run: xcodegen generate
+
+      - name: Build
+        # Adjust the simulator name if it's not present on the current
+        # runner image — check with `xcrun simctl list devices` if this
+        # step fails on a fresh runner.
+        run: |
+          xcodebuild -scheme DefenderOS \
+            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            build
+
+      - name: Test
+        run: |
+          xcodebuild test -scheme DefenderOS \
+            -destination 'platform=iOS Simulator,name=iPhone 16'
+
+  label-touched-domain:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/labeler@v5
+        with:
+          configuration-path: .github/labeler.yml

@@ -1,0 +1,26 @@
+# XcodeGen: the .xcodeproj is GENERATED from project.yml - never commit it.
+*.xcodeproj/
+*.xcworkspace/
+
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+
+DerivedData/
+build/
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+.build/
+.swiftpm/
+
+Pods/
+Carthage/Build/
+
+.DS_Store
+
+*.jsonl
+
+.vscode/
+.idea/
