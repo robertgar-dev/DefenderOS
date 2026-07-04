@@ -1,9 +1,11 @@
 # XcodeGen project spec. Install: `brew install xcodegen`. Run: `xcodegen generate`.
-# Regenerate the .xcodeproj from this file instead of editing it by hand —
-# this file is the diffable, Claude-Code-editable source of truth.
+# This file is the diffable source of truth — never hand-edit the .xcodeproj.
 #
-# Fill in your own Apple Developer Team ID below before the first build;
-# it is intentionally left blank here.
+# Fill in your Apple Developer Team ID before building on a physical device.
+# Simulator + CI builds run unsigned (CI passes CODE_SIGNING_ALLOWED=NO).
+#
+# The widget extension target was removed for the MVP build track — it returns
+# with the Backlog (decision 0008). Less to sign, less to break, faster to live.
 
 name: DefenderOS
 options:
@@ -17,36 +19,29 @@ targets:
     platform: iOS
     sources:
       - path: DefenderOS
+        excludes:
+          - "Resources/Info.plist"
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.garfinkle.defenderos
         INFOPLIST_FILE: DefenderOS/Resources/Info.plist
-        CODE_SIGN_ENTITLEMENTS: DefenderOS/Resources/DefenderOS.entitlements
-        DEVELOPMENT_TEAM: "" # fill in your Team ID
+        DEVELOPMENT_TEAM: "" # your Team ID, for device builds only
+        TARGETED_DEVICE_FAMILY: "1"
     entitlements:
       path: DefenderOS/Resources/DefenderOS.entitlements
-      properties:
-        com.apple.developer.carplay-maps: true
-    dependencies:
-      - target: DefenderOSWidgetExtension
-        embed: true
-
-  DefenderOSWidgetExtension:
-    type: app-extension
-    platform: iOS
-    sources:
-      - path: Widgets/DefenderOSWidget
-    settings:
-      base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.garfinkle.defenderos.widget
-        INFOPLIST_FILE: Widgets/DefenderOSWidget/Info.plist
-        DEVELOPMENT_TEAM: "" # fill in your Team ID
+      # File is hand-authored (docs/AUDIT.md fix, red flag #5) rather than
+      # generated from a `properties:` block — removes a dependency on
+      # XcodeGen behavior that was asserted but never verified in this repo.
 
   DefenderOSTests:
     type: bundle.unit-test
     platform: iOS
     sources:
       - path: DefenderOSTests
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.garfinkle.defenderos.tests
     dependencies:
       - target: DefenderOS
 
@@ -55,7 +50,6 @@ schemes:
     build:
       targets:
         DefenderOS: all
-        DefenderOSWidgetExtension: all
     test:
       targets:
         - DefenderOSTests

@@ -51,3 +51,11 @@ source and explicitly notes it supersedes the earlier, weaker
 Mapbox-based attempt. docs/AUDIT.md's addenda were left unchanged —
 they are a historical record of what was checked at each point in time,
 not a current-state claim, and remain accurate as written.
+
+## Follow-up: .gitignore added before first push
+No .gitignore existed anywhere in the repo. Without one, the first
+`xcodegen generate` (which creates DefenderOS.xcodeproj) or first Xcode
+build (DerivedData, xcuserdata) would get swept into `git add -A` and
+committed, directly contradicting this project's own stated rule that
+the .xcodeproj is generated, not authored. Added before Robert's first
+push rather than after — cheaper to prevent than to unwind from history.

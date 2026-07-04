@@ -60,8 +60,9 @@ while "driving," not just that the API call returns text.
 repo), plus the thin wiring in `DefenderOS/CarPlay/MapStyle/` that points
 the app at the published style URL.
 
-**Current state:** Not started. Blocked on a real Pangea Green hex value
-(sample from a photo of the car) before style work starts in earnest.
+**Current state:** Not started, no longer blocked. Working hex estimate
+(`#7F9086`, photo-sampled — see `.claude/rules/carplay-platform.md`) is
+available as a Studio starting point.
 
 **Why manual-gate, almost entirely:** the actual work — choosing colors
 layer by layer, checking contrast and legibility at different zoom levels
@@ -72,3 +73,65 @@ JSON values as a substitute for the Studio session.
 
 **Definition of done:** style published in Studio, wired in, confirmed
 legible in the CarPlay Simulator in both light and dark.
+
+---
+
+## Brief: Alaia interaction contract (P2, the half that must be heard)
+
+**Scope:** the CarPlay-facing half of `DefenderOS/Core/Voice/` plus
+`DefenderOS/CarPlay/Templates/` voice wiring. The STT→Claude→TTS
+plumbing itself is mechanical and may be built in unattended sessions;
+everything below needs ears.
+
+**Build against decision 0005:** Talk-only mic gate (audio session opens
+on the button, nowhere else), the three sensitivity modes with their
+stated behaviors, held-notes queue and its delivery-on-summon, bin-scoped
+summons, two-sentence cap while moving, `.duckOthers` against Spotify.
+
+**Why manual-gate:** whether the duck feels right, whether Lookout's
+unprompted line lands as helpful or intrusive, whether her register in
+Daphne mode is actually gentle — none of that is visible in a diff.
+
+**Definition of done:** a person has heard, at minimum: a summoned
+response over music (duck + recover), a held-note handover, and a
+Lookout interjection — and judged them usable while "driving."
+
+---
+
+## Brief: Field Guide (P5)
+
+**Scope:** `DefenderOS/CarPlay/Templates/FieldGuide/` + the queries in
+`Data/Store/` that feed it.
+
+**Build:** three list-template columns per decision 0005 — Our table
+(stop-count ranking computed from the trips store), Tonight nearby
+(events cache, rank + distance shown), Scouted (pins). Every row's action
+is route-to-destination. Widget stays trip-status only.
+
+**Why manual-gate:** list density, label truncation, and tap-target feel
+on the real CarPlay screen; also the judgment call of whether computed
+lines ("always after the museum") read as delightful or creepy.
+
+**Definition of done:** query layer unit-tested; a person has paged
+through all three columns in the Simulator and routed from a row.
+
+---
+
+## Brief: Arrival, chime, Daphne register (P7 delight layer)
+
+**Scope:** `DefenderOS/CarPlay/Templates/Arrival/`,
+`DefenderOS/Core/Audio/Chime/`, Daphne-mode behaviors across Alaia and
+music.
+
+**Build:** two-note arrival chime (ours, ducking Spotify, tap-only),
+expedition stamp from the trips table, Daphne aboard toggle on Departure
+→ audio soft-cap + lullaby quick action + gentle Alaia register.
+
+**Why manual-gate:** it's sound and feel, start to finish. The chime's
+level relative to music, the stamp animation timing, whether the gentle
+register is actually gentle — Simulator ears and eyes, plus eventually
+the toughest reviewer in the household.
+
+**Definition of done:** heard and approved in the Simulator; Daphne-mode
+register reviewed against decision 0005's limits (no volume-slider
+claims).

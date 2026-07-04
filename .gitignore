@@ -1,26 +1,34 @@
-# XcodeGen: the .xcodeproj is GENERATED from project.yml - never commit it.
+# XcodeGen: the .xcodeproj is GENERATED from project.yml — never commit it.
+# See CLAUDE.md: "never hand-edit .xcodeproj — edit project.yml and regenerate."
 *.xcodeproj/
 *.xcworkspace/
 
+# Xcode user/session state (machine-specific, never useful to commit)
 xcuserdata/
 *.xcuserstate
 *.xcscmblueprint
 
+# Build products
 DerivedData/
 build/
 *.ipa
 *.dSYM.zip
 *.dSYM
 
+# Swift Package Manager
 .build/
 .swiftpm/
 
+# CocoaPods / Carthage (not used here, harmless if they ever are)
 Pods/
 Carthage/Build/
 
+# macOS
 .DS_Store
 
+# Local trip data written by TripStore at runtime — never belongs in git
 *.jsonl
 
+# Editor/IDE noise
 .vscode/
 .idea/

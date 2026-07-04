@@ -70,5 +70,10 @@ already pivoted once on a wrong initial assumption.
 - PredictHQ: the radius query parameter takes the value directly, e.g.
   `5mi@lat,lon`. Use the `rank`/`local_rank` fields to filter noise in
   dense areas — don't surface everything the radius returns.
-- Pangea Green factory paint code: 2407 / 1DJ / HIH. No verified hex value
-  — sample one from an actual photo of the car rather than inventing one.
+- Pangea Green factory paint code: 2407 / 1DJ / HIH. Working hex estimate
+  from a photo-sampled median: `#7F9086` (muted, desaturated sage-olive,
+  grey undertone — not a saturated forest/military green). Sampled from
+  uneven interior lighting (window backlight vs. shadowed lower dash), so
+  treat as a Studio starting point to true up visually, not a lab-exact
+  match — the actual paint code (2407) is the authoritative source if
+  exact matching ever matters more than the working estimate.

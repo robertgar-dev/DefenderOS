@@ -1,5 +1,15 @@
 # DefenderOS
 
+## Current objective — LIVE BUILD
+
+The committed scope is the Build Track in `docs/KICKOFF.md` (M0-M3):
+compile the existing skeleton, real routing, thin Alaia, daily-driver
+polish. Backlog items (bins, memory, cluster, Field Guide, Spotify,
+prediction, dashcam...) are designed and documented but NOT in scope —
+promoting one requires a new decision doc (0008). If a session finds
+itself building something not in M0-M3, stop and check KICKOFF.md.
+
+
 Personal CarPlay app for a Land Rover Defender. Navigation-category app with
 trip logging, ambient event/weather awareness, and a Claude-voice commentary
 layer named Alaia. Solo project, sideloaded — never submitted to the App Store.
@@ -28,6 +38,11 @@ layer named Alaia. Solo project, sideloaded — never submitted to the App Store
 - No live control of Apple Maps or Google Maps — not possible for any
   CarPlay app, any category. We either hand off via URL scheme (one-way) or
   run our own MKDirections-based routing. Don't propose otherwise.
+- Alaia's runtime model is `claude-sonnet-5` via config, never
+  hardcoded — model IDs are pinned snapshots, so upgrades ship as new
+  IDs and require a deliberate config change. Haiku handles micro-tasks.
+  Memory/fact-store rules live in `docs/decisions/0007-alaia-model-and-memory.md`;
+  facts without provenance are rejected by design.
 - Dense, verified CarPlay platform constraints live in
   `.claude/rules/carplay-platform.md` (loads automatically when working
   under `DefenderOS/CarPlay/` or `DefenderOS/Widgets/`). Read it before
@@ -45,20 +60,17 @@ layer named Alaia. Solo project, sideloaded — never submitted to the App Store
 ## Folder structure
 
     DefenderOS/
-    ├── App/                  entry point, app delegate
-    ├── CarPlay/              scene delegate, map + voice templates
+    ├── App/                  AppDelegate, PhoneSceneDelegate, ContentView (EXISTS)
+    ├── CarPlay/              CarPlaySceneDelegate, MapViewController (EXISTS)
     ├── Core/
-    │   ├── Navigation/       MKDirections wrapper
-    │   ├── Logging/          trip/waypoint capture
-    │   ├── Voice/            Alaia: STT -> Claude API -> TTS
-    │   └── Awareness/        PredictHQ, WeatherKit, NPS
-    ├── Data/
-    │   ├── Models/
-    │   ├── Store/            SQLite layer
-    │   └── DossierSync/      bridge to the React expedition dossier
-    ├── Widgets/DefenderOSWidget/
-    └── Resources/
-    DefenderOSTests/
+    │   ├── Logging/          TripLogger (EXISTS)
+    │   ├── Navigation/       MKDirections wrapper (M1)
+    │   └── Voice/            Alaia: STT -> Claude API -> TTS (M2)
+    ├── Data/Store/           Trip, TripStore — JSONL now, SQLite in M1 (EXISTS)
+    └── Resources/            Info.plist w/ dual scene manifest (EXISTS)
+    DefenderOSTests/          TripStoreTests (EXISTS)
+    Backlog dirs (Awareness/, DossierSync/, Widgets/) get created when
+    their Backlog item is promoted — do not scaffold them speculatively.
     docs/
     ├── ARCHITECTURE.md
     ├── decisions/            one file per settled decision, dated
@@ -101,6 +113,37 @@ in `.github/pull_request_template.md`; it's the canonical version, not the
 scattered mentions elsewhere in this repo's docs. See
 `docs/decisions/0003-consolidated-checks.md` for why this exists as one
 file instead of staying spread across CLAUDE.md and the agent briefs.
+
+## Readiness
+
+`docs/AUDIT.md` is a hostile self-review of this scaffold and the fixes
+applied in response — read it before assuming any CarPlay-facing code
+is correct. Nothing in `DefenderOS/` has ever been run through a real
+Swift compiler; treat it as a strong draft, not verified code, until
+Xcode says otherwise.
+
+## Scope
+
+`docs/ROADMAP.md` is the authoritative phased scope (P0–P7, sized, with
+dependencies and parallel lanes). Rev B design decisions are consolidated
+in `docs/decisions/0005-rev-b-design.md` — check both before proposing
+new features or resequencing work. The critical path is entitlement →
+P1 → daily driving data → prediction; features that feed on trip data
+cannot be pulled earlier than the data exists.
+
+## Environment
+
+- Driven from Windows PowerShell (`C:\Users\rober\Documents\Defender_OS`).
+  `xcodegen`/`xcodebuild` don't run locally here — CI (`.github/workflows/ci.yml`,
+  macOS runner) is the real build/test environment. Treat a local
+  "build succeeded" claim on this machine as impossible; verify via the
+  CI run on the PR instead.
+- An external Obsidian vault (`C:\Users\rober\Documents\Obsidian\Obsidian Vault`)
+  is available via `--add-dir` for pattern/convention reference — how
+  decisions, phase logs, and learning entries are typically structured
+  elsewhere. It is reference material, not merged governance: don't treat
+  its conventions as binding on this repo unless a decision doc here
+  explicitly adopts one. See `docs/decisions/0004-windows-dev-environment.md`.
 
 ## What not to do
 

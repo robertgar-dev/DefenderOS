@@ -17,19 +17,26 @@ jobs:
       - name: Generate project
         run: xcodegen generate
 
+      - name: Pick an available iPhone simulator
+        id: sim
+        run: |
+          DEVICE=$(xcrun simctl list devices available | grep -m1 -oE 'iPhone [^(]+' | sed 's/ *$//')
+          if [ -z "$DEVICE" ]; then echo "No iPhone simulator available"; exit 1; fi
+          echo "Using simulator: $DEVICE"
+          echo "device=$DEVICE" >> "$GITHUB_OUTPUT"
+
       - name: Build
-        # Adjust the simulator name if it's not present on the current
-        # runner image — check with `xcrun simctl list devices` if this
-        # step fails on a fresh runner.
         run: |
           xcodebuild -scheme DefenderOS \
-            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            -destination "platform=iOS Simulator,name=${{ steps.sim.outputs.device }}" \
+            CODE_SIGNING_ALLOWED=NO \
             build
 
       - name: Test
         run: |
           xcodebuild test -scheme DefenderOS \
-            -destination 'platform=iOS Simulator,name=iPhone 16'
+            -destination "platform=iOS Simulator,name=${{ steps.sim.outputs.device }}" \
+            CODE_SIGNING_ALLOWED=NO
 
   label-touched-domain:
     if: github.event_name == 'pull_request'
