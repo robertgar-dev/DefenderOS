@@ -56,10 +56,14 @@ Gate A is that first honest test, not a formality.
     #    open DefenderOS.xcodeproj → run in iPhone Simulator (phone UI)
     #    → Xcode Additional Tools CarPlay Simulator (car UI)
 
-Claude Code session opener that works with this repo's conventions:
+Claude Code session opener that works with this repo's conventions
+(verify-first, counter-tracking — supersedes the older one-liner):
 
-    Continuing DefenderOS. Read the latest phase-log and docs/KICKOFF.md,
-    confirm current milestone, then continue.
+    Continuing DefenderOS. State the session counter from the newest
+    phase-log and increment it by one. Verify current CI status via the
+    Actions API (not assumption). Check whether the entitlement has been
+    submitted or Mac access has changed. State the single next action.
+    End by updating the phase-log.
 
 ## Build Track (the only committed scope)
 

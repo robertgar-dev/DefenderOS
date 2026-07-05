@@ -9,6 +9,13 @@ prediction, dashcam...) are designed and documented but NOT in scope —
 promoting one requires a new decision doc (0008). If a session finds
 itself building something not in M0-M3, stop and check KICKOFF.md.
 
+Status, plainly: **Gate A is done** (CI builds and tests pass on the
+macOS runner — verified via the Actions API, not assumed). **Gate B is
+not started** — blocked on Mac access for the CarPlay Simulator check.
+The CarPlay entitlement request is **drafted** (`docs/entitlement-request.md`)
+but **not submitted**, and Robert has not yet confirmed reading the
+draft. The newest phase-log has the current session counter and detail.
+
 
 Personal CarPlay app for a Land Rover Defender. Navigation-category app with
 trip logging, ambient event/weather awareness, and a Claude-voice commentary
