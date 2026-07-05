@@ -45,11 +45,32 @@
   reading docs/entitlement-request.md. Mac access: no change detectable
   from the repo. Gate B still not started, still blocks M0.
 
+## Session 5 (2026-07-04, night) — SESSION COUNTER: 5
+- CI: run #6 (f7e5c35, session-4 docs push) completed success —
+  verified via Actions API. All six runs accounted for: #1 failure
+  (stale zip), #2-#6 success.
+- Entitlement, two distinct facts — do not conflate:
+  READ: yes. Robert has now read docs/entitlement-request.md in full
+  (confirmed in chat, outside this repo). One wording gap found: the
+  draft says "no unprompted speech," but decision 0005 (verified,
+  line 11) defines Lookout mode as "may speak first, safety-critical
+  only." Note: M2 committed scope is Quiet/On-call only, so the draft
+  is accurate for M0-M3 but not the full 0005 design.
+  SUBMITTED: no. Robert has not chosen between submitting as-is or
+  editing that line, and has not submitted to Apple.
+- Gate B / Mac access: still not started. Mac-mini connection options
+  discussed in chat (shared monitor input, KVM switch, Screen Sharing
+  over network) — nothing confirmed acted on.
+- Backlog thread, NOT approved, no decision doc: an ambient-listening
+  "Field Notes mode" design discussion happened in chat. Do not build
+  toward it.
+
 ## Next
-1. SINGLE NEXT ACTION — Robert: READ docs/entitlement-request.md, then
-   submit at developer.apple.com/contact/carplay. Deadline July 9,
-   four days out (hard-deadline-bound; nothing else is).
+1. SINGLE NEXT ACTION — Robert: pick a wording (submit the draft
+   as-is, or edit the "no unprompted speech" line to carve out
+   0005's Lookout exception), then submit at
+   developer.apple.com/contact/carplay. Deadline July 9.
 2. Robert, on a Mac: Gate B — CarPlay Simulator shows live map;
    disconnect writes a trip to trips.jsonl. M0 is NOT done until this
    passes. Does not need to wait for entitlement approval.
-3. Next session: increment the counter to 5.
+3. Next session: increment the counter to 6.
