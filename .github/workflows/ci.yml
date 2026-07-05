@@ -7,7 +7,13 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: macos-latest
+    # Pinned (was macos-latest). On 2026-07-04/05 that label served a mixed
+    # fleet — macos-15/Xcode 16.4 (runs #2,#3,#8,#10) and macos-26/Xcode 26.5
+    # (runs #5,#9), verified from Actions job logs. Pinning to the
+    # majority-verified pair; bump both lines deliberately, not by drift.
+    runs-on: macos-15
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
     steps:
       - uses: actions/checkout@v4
 

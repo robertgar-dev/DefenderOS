@@ -32,3 +32,8 @@ Carthage/Build/
 # Editor/IDE noise
 .vscode/
 .idea/
+
+# Claude Code local state (machine-specific; .claude/rules/ IS tracked —
+# don't ignore the whole directory)
+.claude/settings.local.json
+.remember/
