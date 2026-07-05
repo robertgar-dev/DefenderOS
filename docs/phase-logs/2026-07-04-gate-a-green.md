@@ -65,12 +65,26 @@
   "Field Notes mode" design discussion happened in chat. Do not build
   toward it.
 
+## Session 6 (2026-07-04, night) — SESSION COUNTER: 6
+- CI: run #7 (da4b268, session-5 phase-log push) completed success —
+  verified via Actions API. Ledger: #1 failure, #2-#7 success.
+- Entitlement: READ yes (unchanged). SUBMITTED: NO — checked, not
+  assumed: docs/entitlement-request.md unchanged since 1e8df2d, status
+  line still "DRAFT"; no submission or wording choice recorded in any
+  phase-log or in chat this session. No wording (as-is vs Lookout
+  carve-out) has been chosen. A submission unrecorded here would be
+  invisible from this repo; no positive evidence of one exists.
+- Gate B: still not started, still the other open M0 gate.
+- Field Notes mode: still unapproved, no decision doc, do not build
+  toward it.
+
 ## Next
-1. SINGLE NEXT ACTION — Robert: pick a wording (submit the draft
-   as-is, or edit the "no unprompted speech" line to carve out
-   0005's Lookout exception), then submit at
-   developer.apple.com/contact/carplay. Deadline July 9.
+1. SINGLE NEXT ACTION — Robert: pick a wording (as-is vs editing the
+   "no unprompted speech" line for 0005's Lookout exception) and
+   SUBMIT at developer.apple.com/contact/carplay. Deadline July 9.
+   This has been the next action for three consecutive sessions.
 2. Robert, on a Mac: Gate B — CarPlay Simulator shows live map;
    disconnect writes a trip to trips.jsonl. M0 is NOT done until this
    passes. Does not need to wait for entitlement approval.
-3. Next session: increment the counter to 6.
+3. Next session: increment the counter to 7. If the entitlement was
+   submitted, record WHICH wording went to Apple — permanent fact.
