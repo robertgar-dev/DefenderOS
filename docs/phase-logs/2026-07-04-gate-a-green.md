@@ -25,10 +25,21 @@
 - Gate B: not started. No Simulator run recorded anywhere; Mac access
   remains the standing blocker (KICKOFF.md).
 
+## Session 3 (2026-07-04, evening) — SESSION COUNTER: 3
+- CI run #4 (1e8df2d, docs-only): completed success, verified via
+  Actions API. All four runs now accounted for: #1 failure (stale
+  zip), #2-#4 success.
+- Robert has NOT yet confirmed reading docs/entitlement-request.md.
+  Until a human reads it, it must not be submitted as-is.
+- Mac access / Gate B: no change detectable from the repo; unknowable
+  from here beyond that. Gate B still not started, still blocks M0.
+
 ## Next
-1. Robert: submit the entitlement request (draft ready) — deadline
-   July 9, five days out as of this log. Nothing else is
-   deadline-bound.
+1. Robert: READ docs/entitlement-request.md (45 lines — especially
+   the app-description paragraph and the personal-use note), then
+   submit at developer.apple.com/contact/carplay. Deadline July 9,
+   four days out. Nothing else is deadline-bound.
 2. Robert, on a Mac: Gate B — CarPlay Simulator shows live map;
    disconnect writes a trip to trips.jsonl. M0 is NOT done until this
    passes. Does not need to wait for entitlement approval.
+3. Next session: increment the counter to 4.
