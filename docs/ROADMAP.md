@@ -54,6 +54,24 @@ Promotion into the Build Track requires a new decision doc.
 | `LocationProviding` injection seam for TripLogger | AUDIT.md, medium severity, not in first-5 |
 | `UIBackgroundModes: location` | AUDIT.md/0009 — real behavioral change, deserves its own decision |
 
+### Improvements Roadmap (Phase 2 — ordered, decision 0010)
+
+Nothing below starts until M0-M3's exit criteria are met. Executed in
+this sequence and no other; reordering requires a new decision doc,
+same rule as 0008.
+
+1. **Alaia full capability activation** (bins, held notes, Fact Store,
+   active recall) — prerequisite: M2's thin Alaia shipped; extends it
+   rather than starting cold (specs: 0005/0007).
+2. **Mapbox restyle** — prerequisites: the real-truck photo re-sample
+   (open since the Fable review), and Maps SDK pricing verified
+   directly in Mapbox's own dashboard (not Navigation SDK numbers, not
+   chat assertions).
+3. **POI / Field Guide highlighting** — prerequisite: PredictHQ
+   integration, built against real usage data, not blind.
+4. **Intelligent routing** — prerequisite: observed daily-driving data
+   from M3; least designed, deliberately last.
+
 ## Standing blockers
 
 Unchanged: entitlement approval · Mac access · dossier schema · a real

@@ -54,6 +54,9 @@ layer named Alaia. Solo project, sideloaded — never submitted to the App Store
   `.claude/rules/carplay-platform.md` (loads automatically when working
   under `DefenderOS/CarPlay/` or `DefenderOS/Widgets/`). Read it before
   touching those directories even if it's not shown in this session yet.
+- Post-M3 Improvements are an ORDERED plan (Alaia activation → Mapbox
+  restyle → POI/Field Guide → intelligent routing), each gated on stated
+  prerequisites — see `docs/decisions/0010-mvp-improvements-discipline.md`.
 
 ## Build & test
 
