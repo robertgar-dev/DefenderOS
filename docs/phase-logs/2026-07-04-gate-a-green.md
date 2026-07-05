@@ -34,12 +34,22 @@
 - Mac access / Gate B: no change detectable from the repo; unknowable
   from here beyond that. Gate B still not started, still blocks M0.
 
+## Session 4 (2026-07-04, late evening) — SESSION COUNTER: 4
+- Docs-only commit fb0238c: KICKOFF.md session opener rewritten to the
+  verify-first, counter-tracking version; CLAUDE.md now states gate
+  status plainly (Gate A done, Gate B not started, entitlement drafted/
+  unsubmitted/unread).
+- CI verified via Actions API: 5 runs total, #1 failure (stale zip),
+  #2-#5 all success. Run #5 (2457fd8) is new since the session-3 entry.
+- Entitlement: still NOT submitted, and Robert has still not confirmed
+  reading docs/entitlement-request.md. Mac access: no change detectable
+  from the repo. Gate B still not started, still blocks M0.
+
 ## Next
-1. Robert: READ docs/entitlement-request.md (45 lines — especially
-   the app-description paragraph and the personal-use note), then
+1. SINGLE NEXT ACTION — Robert: READ docs/entitlement-request.md, then
    submit at developer.apple.com/contact/carplay. Deadline July 9,
-   four days out. Nothing else is deadline-bound.
+   four days out (hard-deadline-bound; nothing else is).
 2. Robert, on a Mac: Gate B — CarPlay Simulator shows live map;
    disconnect writes a trip to trips.jsonl. M0 is NOT done until this
    passes. Does not need to wait for entitlement approval.
-3. Next session: increment the counter to 4.
+3. Next session: increment the counter to 5.
